@@ -1,0 +1,22 @@
+.login-container {
+  min-height: 100vh;
+}
+
+.login-card {
+  width: 25rem;
+}
+
+.btn-hover {
+  transition: all 0.3s;
+}
+
+.btn-hover:hover:not(:disabled) {
+  background-color: #0056b3 !important;
+  /* fuerza el color azul más oscuro */
+  transform: scale(1.05);
+  /* efecto de “levantar” */
+}
+
+.btn-transition {
+  transition: all 0.3s;
+}
