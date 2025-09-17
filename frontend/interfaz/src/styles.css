@@ -1,7 +1,7 @@
-@import "tailwindcss";
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
+@import "tailwindcss";
 body {
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(120deg, #1e3a8a 0%, #0ea5e9 100%);
