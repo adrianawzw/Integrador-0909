@@ -1,63 +1,82 @@
-<div class="container d-flex justify-content-center align-items-center login-container">
-  <div class="card shadow-lg p-4 rounded-4 login-card">
-    <h2 class="text-center mb-4 fw-bold">Iniciar Sesión</h2>
-    <form (ngSubmit)="login()">
-      <!-- Email -->
-      <div class="mb-3">
-        <label for="email" class="form-label fw-semibold">Correo electrónico</label>
-        <input
-          id="email"
-          type="email"
-          class="form-control rounded-3"
-          [(ngModel)]="email"
-          name="email"
-          required
-          placeholder="tu@email.com"
-        />
+<div class="login-page">
+  <div class="container d-flex justify-content-center align-items-center login-container">
+    <div class="card shadow-lg p-4 rounded-4 login-card">
+      <h2 class="text-center mb-4 fw-bold">Iniciar Sesión</h2>
+      <form (ngSubmit)="login()">
+        <!-- Email -->
+        <div class="mb-3">
+          <label for="email" class="form-label fw-semibold">Correo electrónico</label>
+          <input
+            id="email"
+            type="email"
+            class="form-control rounded-3"
+            [(ngModel)]="email"
+            name="email"
+            required
+            placeholder="tu@email.com"
+          />
+        </div>
+
+        <!-- Password con botón mostrar/ocultar -->
+        <div class="mb-3">
+          <label for="password" class="form-label fw-semibold">Contraseña</label>
+          <div class="input-group">
+            <input
+              id="password"
+              [type]="showPassword ? 'text' : 'password'"
+              class="form-control rounded-3"
+              [(ngModel)]="password"
+              name="password"
+              required
+              placeholder="Tu contraseña"
+            />
+            <button
+              type="button"
+              class="btn btn-outline-secondary"
+              (click)="togglePassword()"
+              [attr.title]="showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'"
+              [attr.aria-label]="showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'"
+            >
+              <i [ngClass]="showPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
+              <span class="visually-hidden">
+                {{ showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña' }}
+              </span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Botón Login con tooltip -->
+        <div class="tooltip-wrapper" [class.disabled]="!email || !password">
+          <button
+            type="submit"
+            class="btn btn-primary w-100 fw-bold shadow-sm rounded-3 btn-hover"
+            [disabled]="!email || !password"
+          >
+            Entrar
+          </button>
+          <span class="tooltip-text">Completar los datos</span>
+        </div>
+      </form>
+
+      <!-- Mensajes -->
+      <div *ngIf="errorMessage" class="alert alert-danger mt-3 rounded-3" role="alert">
+        {{ errorMessage }}
       </div>
 
-      <!-- Password -->
-      <div class="mb-3">
-        <label for="password" class="form-label fw-semibold">Contraseña</label>
-        <input
-          id="password"
-          type="password"
-          class="form-control rounded-3"
-          [(ngModel)]="password"
-          name="password"
-          required
-          placeholder="Tu contraseña"
-        />
+      <div *ngIf="successMessage" class="alert alert-success mt-3 rounded-3" role="alert">
+        {{ successMessage }}
       </div>
 
-      <!-- Botón Login -->
-      <button
-        type="submit"
-        class="btn btn-primary w-100 fw-bold shadow-sm rounded-3"
-        [disabled]="!email || !password"
-      >
-        Entrar
-      </button>
-    </form>
-
-    <!-- Mensajes -->
-    <div *ngIf="errorMessage" class="alert alert-danger mt-3 rounded-3" role="alert">
-      {{ errorMessage }}
-    </div>
-
-    <div *ngIf="successMessage" class="alert alert-success mt-3 rounded-3" role="alert">
-      {{ successMessage }}
-    </div>
-
-    <!-- Registro -->
-    <div class="text-center mt-4 border-top pt-3">
-      <p class="mb-2">¿No tienes cuenta?</p>
-      <a
-        routerLink="/registro"
-        class="btn btn-outline-primary btn-md fw-bold shadow-sm rounded-3 btn-transition"
-      >
-        Regístrate aquí
-      </a>
+      <!-- Registro -->
+      <div class="text-center mt-4 border-top pt-3">
+        <p class="mb-2">¿No tienes cuenta?</p>
+        <a
+          routerLink="/registro"
+          class="btn btn-outline-primary btn-md fw-bold shadow-sm rounded-3 btn-transition"
+        >
+          Regístrate aquí
+        </a>
+      </div>
     </div>
   </div>
 </div>

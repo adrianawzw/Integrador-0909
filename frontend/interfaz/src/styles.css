@@ -1,84 +1,124 @@
-@import "tailwindcss";
+/* ---- styles.css (reemplazar contenido actual) ---- */
+
+/* REMOVER esta línea sin Tailwind.css nuevo:
+   @import "tailwindcss";
+*/
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(120deg, #1e3a8a 0%, #0ea5e9 100%);
-    min-height: 100vh;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+:root {
+  --navbar-height: 56px;
+  /* ajusta si tu navbar es más alto */
+  font-family: 'Poppins', sans-serif;
+  /*min-height: 100vh;*/
 }
 
+/* Fondo blanco perlado */
+.dashboard-page {
+  background-color: #fdfdfd;
+  /* Blanco perlado */
+  background-image: linear-gradient(145deg, #f9f9f9, #ffffff);
+  min-height: 100vh;
+}
+
+/* Fondo de login */
+.login-page {
+  background: linear-gradient(135deg, #74b9ff, #0984e3);
+  /* azul bonito */
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* Clase para centrar páginas específicas (login, etc.) */
+.centered-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - var(--navbar-height));
+}
+
+/* Header / Navbar helpers */
 .header-fixed {
   z-index: 1030;
 }
 
+/* Estilos para el collapse móvil del navbar */
+@media (max-width: 767.98px) {
+  .navbar-collapse {
+    position: absolute;
+    top: var(--navbar-height);
+    left: 0;
+    right: 0;
+    z-index: 1040;
+    background-color: #0d6efd;
+    /* color consistente con bg-primary */
+    padding-bottom: 0.5rem;
+  }
+
+  .navbar-collapse .nav-link {
+    color: #fff !important;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .navbar-collapse .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.06);
+  }
+}
+
+/* Card hover y otros estilos que ya tenías */
 .card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
-.input-field:focus {
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
-}
-
+/* Botones */
 .btn-primary {
-    transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .btn-primary:hover:not(:disabled) {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
-.wave {
-    animation: wave 8s linear infinite;
-}
-
-@keyframes wave {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-}
-
-/* Estilos para mensajes de error/éxito */
+/* Mensajes y utilidades */
 .message {
-    padding: 12px 16px;
-    border-radius: 8px;
-    margin: 16px 0;
-    display: flex;
-    align-items: center;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin: 16px 0;
+  display: flex;
+  align-items: center;
 }
 
 .message.error {
-    background-color: #FEF2F2;
-    border: 1px solid #FECACA;
-    color: #DC2626;
+  background-color: #FEF2F2;
+  border: 1px solid #FECACA;
+  color: #DC2626;
 }
 
 .message.success {
-    background-color: #F0FDF4;
-    border: 1px solid #BBF7D0;
-    color: #16A34A;
+  background-color: #F0FDF4;
+  border: 1px solid #BBF7D0;
+  color: #16A34A;
 }
 
-.message i {
-    margin-right: 8px;
-}
-
-/* Estilos para loading */
 .loading {
-    display: inline-block;
-    animation: spin 1s linear infinite;
+  display: inline-block;
+  animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }

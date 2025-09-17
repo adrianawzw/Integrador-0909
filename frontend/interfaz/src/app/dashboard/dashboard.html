@@ -1,57 +1,82 @@
-<!-- Header -->
-<header class="bg-primary text-white shadow fixed top-0 start-0 w-100 header-fixed">
-  <div class="container d-flex justify-content-between align-items-center py-3">
-    <!-- Logo -->
-    <a routerLink="/" class="text-white fs-4 fw-bold text-decoration-none">Mi Dashboard</a>
+<div class="dashboard-page">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top header-fixed">
+    <div class="container">
+      <a class="navbar-brand fw-bold" routerLink="/">Mi Dashboard</a>
 
-    <!-- Menú (desktop) -->
-    <nav class="d-none d-md-flex gap-3">
-      <a routerLink="/" class="text-white text-decoration-none">Inicio</a>
-      <a routerLink="/usuarios" class="text-white text-decoration-none">Usuarios</a>
-      <a routerLink="/reportes" class="text-white text-decoration-none">Reportes</a>
-      <a routerLink="/configuracion" class="text-white text-decoration-none">Configuración</a>
-    </nav>
+      <!-- botón hamburguesa -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <!-- Botón hamburguesa (mobile) -->
-    <button
-      class="d-md-none btn btn-outline-light"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#mobileMenu"
-    >
-      ☰
-    </button>
-  </div>
+      <!-- collapse -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-md-0">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/usuarios">Usuarios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/reportes">Reportes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/configuracion">Configuración</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-  <!-- Menú móvil -->
-  <div class="collapse bg-primary" id="mobileMenu">
-    <nav class="d-flex flex-column p-3 gap-2">
-      <a routerLink="/" class="text-white text-decoration-none">Inicio</a>
-      <a routerLink="/usuarios" class="text-white text-decoration-none">Usuarios</a>
-      <a routerLink="/reportes" class="text-white text-decoration-none">Reportes</a>
-      <a routerLink="/configuracion" class="text-white text-decoration-none">Configuración</a>
-    </nav>
-  </div>
-</header>
+  <!-- Contenido -->
+  <main class="dashboard-page container mt-5 pt-5">
+    <h2 class="mb-3">Usuarios Registrados</h2>
+    <p class="text-muted">Lista de usuarios registrados en el sistema</p>
 
-<!-- Contenido principal -->
-<main class="container pt-5 mt-4">
-  <h2 class="mb-3">Usuarios Registrados</h2>
-  <p class="text-muted">Lista de usuarios registrados en el sistema</p>
-
-  <!-- Grid responsive de usuarios -->
-  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
-    <div class="col" *ngFor="let user of users">
-      <div class="card h-100 shadow-sm">
-        <div class="card-body">
-          <h5 class="card-title">{{ user.username }}</h5>
-          <p class="card-text">{{ user.email }}</p>
+    <!-- GRID -->
+    <div class="row g-3">
+      <!-- fila 1 con 2 columnas -->
+      <div class="col-md-6">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Cuadro 1</h5>
+            <p class="card-text">Contenido del primer cuadro</p>
+          </div>
         </div>
-        <div class="card-footer bg-transparent border-0 d-flex justify-content-between">
-          <button type="button" class="btn btn-sm btn-outline-primary">Editar</button>
-          <button type="button" class="btn btn-sm btn-outline-danger">Eliminar</button>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Cuadro 2</h5>
+            <p class="card-text">Contenido del segundo cuadro</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- fila 2 con lista de usuarios -->
+      <div class="col-12">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Lista de Usuarios</h5>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item d-flex justify-content-between align-items-center"
+                  *ngFor="let user of users">
+                <div>
+                  <strong>{{ user.username }}</strong><br>
+                  <small class="text-muted">{{ user.email }}</small>
+                </div>
+                <div>
+                  <button type="button" class="btn btn-sm btn-outline-primary me-2">Editar</button>
+                  <button type="button" class="btn btn-sm btn-outline-danger">Eliminar</button>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</main>
+  </main>
+</div>

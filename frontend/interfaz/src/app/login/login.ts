@@ -17,7 +17,15 @@ export class Login {
   errorMessage = '';
   successMessage = '';
 
+  // estado para mostrar/ocultar contraseña
+  showPassword = false;
+
   constructor(private authService: AuthService, private router: Router) {}
+
+  // método que alterna el estado
+  togglePassword() {
+    this.showPassword = !this.showPassword;
+  }
 
   login() {
     // Limpiar mensajes anteriores
