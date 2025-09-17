@@ -6,11 +6,14 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-:root {
-  --navbar-height: 56px;
-  /* ajusta si tu navbar es más alto */
-  font-family: 'Poppins', sans-serif;
-  /*min-height: 100vh;*/
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(120deg, #1e3a8a 0%, #0ea5e9 100%);
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Fondo blanco perlado */
