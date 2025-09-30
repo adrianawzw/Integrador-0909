@@ -1,82 +1,100 @@
-<div class="login-page">
-  <div class="container d-flex justify-content-center align-items-center login-container">
-    <div class="card shadow-lg p-4 rounded-4 login-card">
-      <h2 class="text-center mb-4 fw-bold">Iniciar Sesión</h2>
-      <form (ngSubmit)="login()">
-        <!-- Email -->
-        <div class="mb-3">
-          <label for="email" class="form-label fw-semibold">Correo electrónico</label>
-          <input
-            id="email"
-            type="email"
-            class="form-control rounded-3"
-            [(ngModel)]="email"
-            name="email"
-            required
-            placeholder="tu@email.com"
-          />
-        </div>
+<!-- src/app/login/login.html -->
+<div class="min-h-screen flex items-center justify-center p-4">
+  <!-- Fondo animado -->
+  <div class="fixed top-0 left-0 w-full h-full overflow-hidden z-0 opacity-10">
+    <div class="absolute flex w-[200%] wave">
+      <!-- Primer SVG -->
+      <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="w-full h-full">
+        <path
+          d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z"
+          opacity=".25" fill="currentColor"></path>
+        <path
+          d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z"
+          opacity=".5" fill="currentColor"></path>
+        <path
+          d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z"
+          fill="currentColor"></path>
+      </svg>
 
-        <!-- Password con botón mostrar/ocultar -->
-        <div class="mb-3">
-          <label for="password" class="form-label fw-semibold">Contraseña</label>
-          <div class="input-group">
-            <input
-              id="password"
-              [type]="showPassword ? 'text' : 'password'"
-              class="form-control rounded-3"
-              [(ngModel)]="password"
-              name="password"
-              required
-              placeholder="Tu contraseña"
-            />
-            <button
-              type="button"
-              class="btn btn-outline-secondary"
-              (click)="togglePassword()"
-              [attr.title]="showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'"
-              [attr.aria-label]="showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'"
-            >
-              <i [ngClass]="showPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
-              <span class="visually-hidden">
-                {{ showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña' }}
-              </span>
-            </button>
-          </div>
-        </div>
+      <!-- Segundo SVG duplicado -->
+      <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="w-full h-full">
+        <path
+          d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z"
+          opacity=".25" fill="currentColor"></path>
+        <path
+          d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z"
+          opacity=".5" fill="currentColor"></path>
+        <path
+          d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z"
+          fill="currentColor"></path>
+      </svg>
+    </div>
+  </div>
 
-        <!-- Botón Login con tooltip -->
-        <div class="tooltip-wrapper" [class.disabled]="!email || !password">
-          <button
-            type="submit"
-            class="btn btn-primary w-100 fw-bold shadow-sm rounded-3 btn-hover"
-            [disabled]="!email || !password"
-          >
-            Entrar
-          </button>
-          <span class="tooltip-text">Completar los datos</span>
-        </div>
-      </form>
+  <!-- Card principal -->
+  <div class="card bg-white relative z-10 p-8 max-w-md w-full rounded-xl shadow-lg">
 
-      <!-- Mensajes -->
-      <div *ngIf="errorMessage" class="alert alert-danger mt-3 rounded-3" role="alert">
-        {{ errorMessage }}
+    <!-- Header -->
+    <div class="text-center mb-6">
+      <div
+        class="w-20 h-20 mx-auto bg-gradient-to-br from-blue-600 to-cyan-500 rounded-xl flex items-center justify-center shadow-lg mb-4">
+        <i class="fas fa-graduation-cap text-3xl text-white logo-icon"></i>
+      </div>
+      <h1 class="text-2xl font-bold text-gray-800 mb-1">Colegio San Martín</h1>
+      <p class="text-gray-600 text-sm">Sistema de Gestión Estudiantil</p>
+    </div>
+
+    <!-- Formulario -->
+    <form (ngSubmit)="login()" class="space-y-4">
+      <!-- Correo -->
+      <div class="space-y-1">
+        <label for="correo">Correo electrónico</label>
+        <input id="correo" name="correo" type="email" [(ngModel)]="correo" (input)="clearMessages()" required
+          placeholder="tu.email@colegio.edu.pe" class="input-field w-full py-2 px-3 border border-gray-300 rounded-lg"
+          maxlength="50">
       </div>
 
-      <div *ngIf="successMessage" class="alert alert-success mt-3 rounded-3" role="alert">
-        {{ successMessage }}
+      <!-- Contraseña -->
+      <div class="space-y-1">
+        <label for="password">Contraseña</label>
+        <input id="password" name="password" type="password" [(ngModel)]="password" (input)="clearMessages()" required
+          placeholder="Tu contraseña" class="input-field w-full py-2 px-3 border border-gray-300 rounded-lg"
+          maxlength="50">
       </div>
 
-      <!-- Registro -->
-      <div class="text-center mt-4 border-top pt-3">
-        <p class="mb-2">¿No tienes cuenta?</p>
-        <a
-          routerLink="/registro"
-          class="btn btn-outline-primary btn-md fw-bold shadow-sm rounded-3 btn-transition"
-        >
-          Regístrate aquí
-        </a>
-      </div>
+      <!-- Botón -->
+      <button type="submit"
+        class="btn-primary w-full py-3 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all">
+        <span *ngIf="!isLoading">Ingresar al Sistema</span>
+        <span *ngIf="isLoading" class="flex items-center justify-center space-x-2">
+          <i class="fas fa-spinner loading"></i> Verificando...
+        </span>
+      </button>
+
+    </form>
+
+    <!-- Mensajes -->
+    <div *ngIf="errorMessage" class="message error mt-4">
+      <i class="fas fa-exclamation-triangle mr-2"></i>{{ errorMessage }}
+    </div>
+    <div *ngIf="successMessage" class="message success mt-4">
+      <i class="fas fa-check-circle mr-2"></i>{{ successMessage }}
+    </div>
+
+    <!-- Recuperar contraseña -->
+    <div class="mt-6 pt-6 border-t border-gray-200 text-center">
+      <button type="button" (click)="requestPasswordReset()"
+        class="btn-secondary flex items-center justify-center space-x-2">
+        <i class="fas fa-key"></i>
+        <span>Recuperar contraseña</span>
+      </button>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="mt-6 pt-4 border-t border-gray-200 text-center">
+      <p class="text-xs text-gray-500">© 2024 Colegio San Martín</p>
+      <p class="text-xs text-gray-400 mt-1">Sistema v2.1.0</p>
     </div>
   </div>
 </div>

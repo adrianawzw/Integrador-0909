@@ -1,26 +1,34 @@
 import express from 'express';
-import dotenv from 'dotenv';
 import cors from 'cors';
-import helmet from 'helmet';
+import dotenv from 'dotenv';
 
-// Importamos rutas
-import estudiantesRoutes from './routes/estudiantes.js';
+// Rutas
+import adminRoutes from './routes/admin/admin.routes.js';
+import loginRoutes from './routes/login.routes.js';
+import panelRoutes from './routes/panel.routes.js';
+
+// Middlewares
+import { loginMiddleware } from './middlewares/login.middleware.js';
+
 
 dotenv.config();
 
 const app = express();
 
-// Middlewares
+// Middlewares globales
+app.use(cors({ origin: process.env.FRONTEND_URL, credentials: true }));
 app.use(express.json());
-app.use(cors({ origin: process.env.FRONTEND_URL }));
-app.use(helmet());
 
-// Rutas
-app.use('/estudiantes', estudiantesRoutes);
+// Health check
+app.get('/healthz', (req, res) => res.send('ok'));
 
-// Ruta de prueba
-app.get('/', (req, res) => {
-    res.send('Servidor funcionando correctamente!');
-});
+// Rutas públicas
+app.use('/api/login', loginRoutes);
+
+// Rutas protegidasx
+app.use('/api/panel', loginMiddleware, panelRoutes);
+
+// Admin (rutas ya tienen middlewares internos)
+app.use('/api/admin', adminRoutes);
 
 export default app;

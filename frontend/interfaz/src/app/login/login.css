@@ -1,53 +1,140 @@
-.login-container {
-  min-height: 100vh;
+@import "tailwindcss";
+
+/* =======================
+   Estilos globales
+   ======================= */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(120deg, #1e3a8a 0%, #0ea5e9 100%);
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.login-card {
-  width: 25rem;
+/* =======================
+   Tarjeta principal
+   ======================= */
+.card {
+    background-color: white;
+    border-radius: 1rem; /* 16px */
+    padding: 2rem; /* 32px */
+    max-width: 28rem; /* 448px */
+    width: 100%;
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+    position: relative;
+    z-index: 10;
+    transition: none; /* Sin animación al hover */
 }
 
-.btn-hover {
-  transition: all 0.3s;
+.card:hover {
+    transform: none;
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
 }
 
-.btn-hover:hover:not(:disabled) {
-  background-color: #0056b3 !important;
-  /* fuerza el color azul más oscuro */
-  transform: scale(1.05);
-  /* efecto de “levantar” */
+/* =======================
+   Input fields
+   ======================= */
+.input-field {
+    width: 100%;
+    padding: 0.5rem 0.75rem; /* 8px 12px */
+    border: 1px solid #d1d5db; /* gris claro */
+    border-radius: 0.5rem; /* 8px */
+    outline: none;
+    transition: box-shadow 0.3s ease;
 }
 
-.btn-transition {
-  transition: all 0.3s;
+.input-field:focus {
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3); /* resalta al enfocar */
 }
 
-.tooltip-wrapper {
-  position: relative;
-  display: block;
-  width: 100%;
+/* =======================
+   Botón principal
+   ======================= */
+.btn-primary {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background-color: #2563eb; /* azul */
+    color: white;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
 
-.tooltip-text {
-  visibility: hidden;
-  background-color: #333;
-  color: #fff;
-  text-align: center;
-  padding: 6px 10px;
-  border-radius: 6px;
-  position: absolute;
-  bottom: 120%;
-  /* encima del botón */
-  left: 50%;
-  transform: translateX(-50%);
-  white-space: nowrap;
-  font-size: 0.85rem;
-  opacity: 0;
-  transition: opacity 0.3s;
-  pointer-events: none;
+.btn-primary:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
 }
 
-/* mostrar tooltip solo si el botón está deshabilitado */
-.tooltip-wrapper.disabled:hover .tooltip-text {
-  visibility: visible;
-  opacity: 1;
+/* =======================
+   Animación de fondo (olas)
+   ======================= */
+.wave {
+    animation: wave 35s linear infinite;
+}
+
+@keyframes wave {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* =======================
+   Mensajes de error / éxito
+   ======================= */
+.message {
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin: 16px 0;
+    display: flex;
+    align-items: center;
+}
+
+.message.error {
+    background-color: #FEF2F2;
+    border: 1px solid #FECACA;
+    color: #DC2626;
+}
+
+.message.success {
+    background-color: #F0FDF4;
+    border: 1px solid #BBF7D0;
+    color: #16A34A;
+}
+
+.message i {
+    margin-right: 8px;
+}
+
+/* =======================
+   Loading icon
+   ======================= */
+/* Icono del logo girando continuamente */
+.logo-icon {
+    display: inline-block;
+
+}
+
+/* La misma animación que usamos para loading */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+.btn-secondary {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 1px solid #d1d5db; /* gris */
+    border-radius: 0.5rem;
+    background-color: white;
+    color: #374151; /* gris oscuro */
+    width: 100%;
+    padding: 0.75rem 1rem;
+}
+
+.btn-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+    background-color: #f3f4f6; /* gris claro al hover */
 }
